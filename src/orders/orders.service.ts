@@ -71,6 +71,7 @@ export class OrdersService {
         if (!order) {
             throw new HttpException('Order not found', HttpStatus.NOT_FOUND);
         }
+        await this.hotelRoomService.changeIsAvailable(+order.hotelRoomId);
         await order.destroy();
     }
 }
