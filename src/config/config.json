@@ -1,0 +1,47 @@
+{
+  "development": {
+    "username": "mihqas",
+    "password": "1DV9Z1r7qkOcj1OhPMJdGbxwJgLMJvwM",
+    "database": "hoteldb_r8it",
+    "host": "dpg-cukukqd2ng1s7381f0v0-a.frankfurt-postgres.render.com",
+    "port": 5432,
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
+    "logging": true
+  },
+  "test": {
+    "username": "mihqas",
+    "password": "1DV9Z1r7qkOcj1OhPMJdGbxwJgLMJvwM",
+    "database": "hoteldb_r8it",
+    "host": "dpg-cukukqd2ng1s7381f0v0-a.frankfurt-postgres.render.com",
+    "port": 5432,
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
+    "logging": true
+  },
+  "production": {
+    "username": "mihqas",
+    "password": "1DV9Z1r7qkOcj1OhPMJdGbxwJgLMJvwM",
+    "database": "hoteldb_r8it",
+    "host": "dpg-cukukqd2ng1s7381f0v0-a.frankfurt-postgres.render.com",
+    "port": 5432,
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
+    "logging": false
+  }
+}
