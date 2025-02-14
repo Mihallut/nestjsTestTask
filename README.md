@@ -26,7 +26,6 @@ Before running the project, ensure you have the following installed:
 - Node.js (v16 or higher)
 - npm or yarn
 - PostgreSQL database
-- Docker (optional, for running PostgreSQL locally)
 
 ---
 
@@ -35,8 +34,8 @@ Before running the project, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-repo-url.git
-cd your-repo-folder
+git clone https://github.com/Mihallut/nestjsTestTask.git
+cd nestjsTestTask
 ```
 
 ### 2. Install Dependencies
