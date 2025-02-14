@@ -45,12 +45,22 @@ export class OrdersService {
         if (data.hotelRoomId === undefined) {
             throw new HttpException('hotelRoomId is required', HttpStatus.BAD_REQUEST);
         }
-        const hotelRoom = await this.hotelRoomService.findOne(data.hotelRoomId);
-        if (!hotelRoom || !hotelRoom.isAvailable) {
-            throw new HttpException('Hotel room was already booked', HttpStatus.CONFLICT);
+
+        if (!data.startDate || !data.endDate) {
+            throw new HttpException('startDate and endDate are required', HttpStatus.BAD_REQUEST);
         }
+
+        const hotelRoom = await this.hotelRoomService.findOne(data.hotelRoomId);
+        if (!hotelRoom) {
+            throw new HttpException('Hotel room not found', HttpStatus.NOT_FOUND);
+        }
+
+        const isAvailable = await this.isRoomAvailable(data.hotelRoomId, data.startDate, data.endDate);
+        if (!isAvailable) {
+            throw new HttpException('Hotel room was already booked for one or more of your dates', HttpStatus.CONFLICT);
+        }
+
         const order = await this.orderModel.create(data);
-        await this.hotelRoomService.changeIsAvailable(+data.hotelRoomId);
         return this.mapToDto(order);
     }
 
@@ -71,7 +81,32 @@ export class OrdersService {
         if (!order) {
             throw new HttpException('Order not found', HttpStatus.NOT_FOUND);
         }
-        await this.hotelRoomService.changeIsAvailable(+order.hotelRoomId);
         await order.destroy();
+    }
+
+    private async isRoomAvailable(hotelRoomId: number, startDate: Date, endDate: Date): Promise<boolean> {
+        const existingBookings = await this.orderModel.findAll({
+            where: {
+                hotelRoomId: hotelRoomId,
+            },
+        });
+
+        for (const booking of existingBookings) {
+            const existingStartDate = new Date(booking.startDate);
+            const existingEndDate = new Date(booking.endDate);
+
+            const newStartDate = new Date(startDate);
+            const newEndDate = new Date(endDate);
+
+            if (
+                (newStartDate >= existingStartDate && newStartDate < existingEndDate) ||
+                (newEndDate > existingStartDate && newEndDate <= existingEndDate) ||
+                (newStartDate <= existingStartDate && newEndDate >= existingEndDate)
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

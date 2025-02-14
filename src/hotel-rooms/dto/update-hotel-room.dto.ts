@@ -58,15 +58,6 @@ export class UpdateHotelRoomDto {
     maxGuests?: number;
 
     @ApiProperty({
-        example: true,
-        description: 'The updated availability status of the room',
-        required: false,
-    })
-    @IsBoolean()
-    @IsOptional()
-    isAvailable?: boolean;
-
-    @ApiProperty({
         example: ['Wi-Fi', 'TV', 'Mini-bar', 'Air conditioning'],
         description: 'The updated list of amenities in the room',
         required: false,

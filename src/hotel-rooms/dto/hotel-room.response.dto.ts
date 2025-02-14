@@ -38,12 +38,6 @@ export class HotelRoomResponseDto {
     maxGuests: number;
 
     @ApiProperty({
-        example: true,
-        description: 'Whether the room is available for booking',
-    })
-    isAvailable: boolean;
-
-    @ApiProperty({
         example: ['Wi-Fi', 'TV', 'Mini-bar', 'Air conditioning'],
         description: 'The list of amenities in the room',
     })

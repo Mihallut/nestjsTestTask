@@ -12,7 +12,6 @@ async function bootstrap() {
   app.useGlobalPipes(new CustomValidationPipe());
   app.useGlobalInterceptors(new LoggingInterceptor());
 
-
   const config = new DocumentBuilder()
     .setTitle('Hotel API')
     .setDescription('API documentation for the hotel management system')

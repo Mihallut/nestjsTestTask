@@ -51,15 +51,6 @@ export class CreateHotelRoomDto {
     maxGuests: number;
 
     @ApiProperty({
-        example: true,
-        description: 'Whether the room is available for booking',
-        required: false,
-    })
-    @IsBoolean()
-    @IsOptional()
-    isAvailable?: boolean;
-
-    @ApiProperty({
         example: ['Wi-Fi', 'TV', 'Mini-bar', 'Air conditioning'],
         description: 'The amenities available in the room',
         required: false,

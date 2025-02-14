@@ -43,13 +43,6 @@ export class HotelRoom extends Model {
     maxGuests: number;
 
     @Column({
-        type: DataType.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-    })
-    isAvailable: boolean;
-
-    @Column({
         type: DataType.ARRAY(DataType.STRING),
         allowNull: true,
     })

@@ -19,7 +19,6 @@ export class HotelRoomsService {
             description: entity.description,
             pricePerNight: entity.pricePerNight,
             maxGuests: entity.maxGuests,
-            isAvailable: entity.isAvailable,
             amenities: entity.amenities,
             createdAt: entity.createdAt,
             updatedAt: entity.updatedAt,
@@ -66,16 +65,5 @@ export class HotelRoomsService {
             throw new HttpException('Hotel room not found', HttpStatus.NOT_FOUND);
         }
         await room.destroy();
-    }
-
-    async changeIsAvailable(id: number): Promise<void> {
-        const room = await this.hotelRoomModel.findByPk(id);
-        if (!room) {
-            throw new HttpException('Hotel room not found', HttpStatus.NOT_FOUND);
-        }
-
-        room.isAvailable = !room.isAvailable;
-
-        await room.save();
     }
 }
